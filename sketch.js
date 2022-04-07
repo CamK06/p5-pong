@@ -1,4 +1,4 @@
-// Not Quite Pong | Cam K. 2022
+// Not Quite Pong | Cam Kerby 2022
 // Note: This code is kinda terrible in some areas
 
 /*
@@ -41,6 +41,7 @@ class Player {
 
   update() {
     // If "AI" is on, follow the ball
+    // TODO: Improve this "AI" logic
     if(cheatingPlayerB && this.isPlayerB) {
       let moveSpeed = 5.5+random(0, 2);
       if(ball.xVelocity < 0)
@@ -272,6 +273,7 @@ function startScreen() {
   text("Not Quite Pong", WIDTH/2, 128);
   textSize(32);
   text("Created By: Cam K.", WIDTH/2, 192);
+  text("Controls:\nPlayer 1 - W/S\nPlayer 2 - Up/Down", WIDTH/2, 500);
   textSize(10);
   text("Copyright © Cam K. 2022 Absolutely NO rights reserved. Actually, forget it, there's no copyright. Copyright sucks", WIDTH/2, HEIGHT-8);
   textSize(32);
