@@ -41,7 +41,6 @@ class Player {
 
   update() {
     // If "AI" is on, follow the ball
-    // TODO: Improve this "AI" logic
     if(cheatingPlayerB && this.isPlayerB) {
       let moveSpeed = 5.5+random(0, 2);
       if(ball.xVelocity < 0)
