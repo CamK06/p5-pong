@@ -1,4 +1,4 @@
-// Not Quite Pong | Cam Kerby 2022
+// Not Quite Pong | Cam K 2022
 // Note: This code is kinda terrible in some areas
 
 /*
@@ -123,8 +123,15 @@ class Ball {
     }
 
     // Handle top/bottom collisions
-    if (this.posY - this.diameter / 2 <= 0 || this.posY + this.diameter / 2 >= HEIGHT)
+    // we set the yPos to prevent the ball from getting in a loop of bouncing *in* the top or bottom of the screen
+    if (this.posY - this.diameter / 2 <= 0) {
       this.yVelocity *= -1;
+      this.posY = 0+this.diameter/2;
+    }
+    else if(this.posY + this.diameter / 2 >= HEIGHT) {
+      this.yVelocity *= -1;
+      this.posY = HEIGHT-this.diameter/2;
+    }
 
     // Handle paddle collisions
     // Player 1
@@ -132,6 +139,7 @@ class Ball {
       this.posY - this.diameter / 2 <= playerA.posY + playerA.ySize &&    // This line and the next are checking...
       this.posY - this.diameter / 2 >= playerA.posY) {                    // ...if ball Y is within paddle's Y
       this.xVelocity *= -1;
+      this.posX = playerA.posX+playerA.xSize+this.diameter/2;
       // Change Y direction if player is moving
       if (playerA.moveDir != 0)
         this.yVelocity = playerA.moveDir;
@@ -142,6 +150,7 @@ class Ball {
       this.posY + this.diameter / 2 <= playerA.posY + playerA.ySize &&
       this.posY + this.diameter / 2 >= playerA.posY) {
       this.xVelocity *= -1;
+      this.posX = playerA.posX+playerA.xSize+this.diameter/2;
       if (playerA.moveDir != 0)
         this.yVelocity = playerA.moveDir;
       this.xVelocity *= random(1, 1.15);
@@ -152,6 +161,7 @@ class Ball {
       this.posY - this.diameter / 2 <= playerB.posY + playerB.ySize &&
       this.posY - this.diameter / 2 >= playerB.posY) {
       this.xVelocity *= -1;
+      this.posX = playerB.posX-this.diameter/2;
       if (playerB.moveDir != 0)
         this.yVelocity = playerB.moveDir;
       this.xVelocity *= random(1, 1.15);
@@ -161,6 +171,7 @@ class Ball {
       this.posY + this.diameter / 2 <= playerB.posY + playerB.ySize &&
       this.posY + this.diameter / 2 >= playerB.posY) {
       this.xVelocity *= -1;
+      this.posX = playerB.posX-this.diameter/2;
       if (playerB.moveDir != 0)
         this.yVelocity = playerB.moveDir;
       this.xVelocity *= random(1, 1.15);
